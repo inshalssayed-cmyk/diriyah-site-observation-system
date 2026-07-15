@@ -13,7 +13,7 @@ services:
       - key: STATUS_PASSWORD
         value: "1353"
       - key: GEMINI_MODEL
-        value: gemini-2.5-flash
+        value: gemini-3.1-flash-lite
       - key: GEMINI_API_KEY
         sync: false
       - key: CLOUDINARY_CLOUD_NAME

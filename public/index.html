@@ -8,7 +8,7 @@
     content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
 
-  <meta name="theme-color" content="#4bb8f2">
+  <meta name="theme-color" content="#a9ddf8">
 
   <title>Diriyah Site Observation System</title>
 
@@ -73,7 +73,7 @@
     }
 
     /* =====================================================
-       NEW DAY-THEME HOME SCREEN
+       HOME SCREEN
     ===================================================== */
 
     #homeScreen {
@@ -82,16 +82,15 @@
       height: 100svh;
       min-height: 100svh;
       overflow: hidden;
-      grid-template-rows: 35% 45% 20%;
+      grid-template-rows: 33% 47% 20%;
       background:
         linear-gradient(
           180deg,
-          rgba(212, 241, 255, 0.12),
-          rgba(244, 251, 255, 0.4)
-        ),
-        url("assets/diriyah-heritage-footer.jpg")
-        center bottom / cover
-        no-repeat;
+          #5ec2f4 0%,
+          #bfe9fb 36%,
+          #e9f8ff 70%,
+          #f7fcff 100%
+        );
     }
 
     #homeScreen.active {
@@ -104,74 +103,88 @@
       z-index: 0;
       inset: 0;
       background:
-        linear-gradient(
-          180deg,
-          rgba(78, 185, 242, 0.06) 0%,
-          rgba(232, 247, 255, 0.35) 47%,
-          rgba(255, 255, 255, 0.18) 68%,
-          rgba(0, 0, 0, 0.07) 100%
+        radial-gradient(
+          circle at 85% 8%,
+          rgba(255, 255, 255, 0.95),
+          rgba(255, 255, 255, 0.28) 18%,
+          transparent 38%
+        ),
+        radial-gradient(
+          circle at 12% 12%,
+          rgba(255, 255, 255, 0.6),
+          transparent 30%
         );
       pointer-events: none;
     }
 
     .home-header {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       min-height: 0;
       padding:
-        max(10px, env(safe-area-inset-top))
+        max(5px, env(safe-area-inset-top))
         18px
-        2px;
+        0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       text-align: center;
+      overflow: hidden;
+    }
+
+    .logo-crop {
+      width: min(55vw, 330px);
+      height: min(13svh, 115px);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
     .project-logo {
       display: block;
-      width: min(27svh, 255px);
-      max-width: 62vw;
+      width: 170%;
+      max-width: none;
       height: auto;
-      max-height: 14svh;
       object-fit: contain;
-      flex-shrink: 0;
+      transform: scale(1.03);
       filter:
         drop-shadow(
-          0 4px 4px rgba(255, 255, 255, 0.65)
+          0 3px 3px rgba(255, 255, 255, 0.8)
         )
         drop-shadow(
-          0 7px 12px rgba(0, 54, 113, 0.18)
+          0 6px 10px rgba(0, 72, 140, 0.2)
         );
     }
 
     .home-header h1 {
-      margin: 2px 0 0;
+      margin: 1px 0 0;
       padding-left: 0.12em;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(38px, 6.8svh, 68px);
-      line-height: 1;
+      font-size: clamp(39px, 6.6svh, 67px);
+      line-height: 0.95;
       letter-spacing: 0.12em;
       background: linear-gradient(
         180deg,
-        #edc35f 0%,
-        #c58b22 54%,
-        #965d0b 100%
+        #efc766 0%,
+        #c98d22 55%,
+        #98600f 100%
       );
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       filter:
         drop-shadow(
-          0 2px 2px rgba(255, 255, 255, 0.8)
+          0 2px 1px rgba(255, 255, 255, 0.85)
         );
     }
 
     .project-name {
-      margin: 7px 0 8px;
-      color: #0a579a;
-      font-size: clamp(16px, 2.7svh, 26px);
+      margin: 7px 0 7px;
+      color: #0b5596;
+      font-size: clamp(15px, 2.55svh, 25px);
       font-weight: 800;
       letter-spacing: 0.08em;
       white-space: nowrap;
@@ -184,7 +197,7 @@
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      gap: 13px;
+      gap: 12px;
     }
 
     .system-title span {
@@ -192,7 +205,7 @@
       background: linear-gradient(
         90deg,
         transparent,
-        #bf8214
+        #ba7c11
       );
     }
 
@@ -201,118 +214,112 @@
     }
 
     .system-title strong {
-      color: #3f5667;
-      font-size: clamp(11px, 1.75svh, 16px);
+      color: #405b6f;
+      font-size: clamp(10px, 1.65svh, 15px);
       font-weight: 500;
       letter-spacing: 0.17em;
       white-space: nowrap;
       text-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.9);
+        0 1px 0 rgba(255, 255, 255, 0.95);
     }
 
     .home-actions {
       position: relative;
-      z-index: 3;
+      z-index: 4;
       min-height: 0;
       padding: 4px 7%;
       display: grid;
       grid-template-rows: repeat(3, minmax(0, 1fr));
-      gap: min(1.5svh, 15px);
+      gap: min(1.45svh, 14px);
     }
 
     .home-button {
       width: 100%;
       min-height: 0;
-      padding: 8px 24px 8px 16px;
-      border: 1.5px solid rgba(255, 255, 255, 0.75);
-      border-radius: 29px;
+      padding: 10px 22px 10px 15px;
+      border: 1.5px solid rgba(255, 255, 255, 0.88);
+      border-radius: 28px;
+
       display: grid;
-      grid-template-columns: min(10.5svh, 92px) 1fr 29px;
+      grid-template-columns: min(10.5svh, 92px) 1fr 28px;
       align-items: center;
-      gap: 22px;
-      color: #ffffff;
+      gap: 20px;
+
+      color: #0b3554;
       text-align: left;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.78),
+          rgba(235, 247, 254, 0.54)
+        );
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
       box-shadow:
-        inset 0 2px 1px rgba(255, 255, 255, 0.35),
-        inset 0 -4px 10px rgba(0, 0, 0, 0.1),
-        0 11px 17px rgba(0, 55, 90, 0.29);
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        inset 0 -2px 8px rgba(25, 92, 133, 0.08),
+        0 9px 20px rgba(21, 77, 111, 0.2);
+
       transition:
         transform 0.18s ease,
-        filter 0.18s ease;
+        background 0.18s ease,
+        box-shadow 0.18s ease;
     }
 
     .home-button:hover {
-      filter: brightness(1.06);
       transform: translateY(-2px);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.9),
+          rgba(240, 249, 255, 0.68)
+        );
+
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        0 12px 24px rgba(21, 77, 111, 0.25);
     }
 
     .home-button:active {
-      transform:
-        translateY(2px)
-        scale(0.995);
+      transform: translateY(1px) scale(0.995);
     }
 
-    .issue-home-button {
-      background:
-        radial-gradient(
-          circle at 15% 20%,
-          rgba(255, 255, 255, 0.25),
-          transparent 34%
-        ),
-        linear-gradient(
-          135deg,
-          #ffad0b 0%,
-          #ff8500 53%,
-          #e15d00 100%
-        );
-    }
-
-    .close-home-button {
-      background:
-        radial-gradient(
-          circle at 15% 20%,
-          rgba(255, 255, 255, 0.22),
-          transparent 34%
-        ),
-        linear-gradient(
-          135deg,
-          #69d43b 0%,
-          #40ac31 51%,
-          #1d8425 100%
-        );
-    }
-
+    .issue-home-button,
+    .close-home-button,
     .status-home-button {
       background:
-        radial-gradient(
-          circle at 15% 20%,
-          rgba(255, 255, 255, 0.2),
-          transparent 34%
-        ),
         linear-gradient(
           135deg,
-          #2798ea 0%,
-          #1471c7 54%,
-          #064b99 100%
+          rgba(255, 255, 255, 0.8),
+          rgba(230, 245, 253, 0.56)
         );
     }
 
     .home-icon {
       width: min(10.5svh, 92px);
       aspect-ratio: 1;
-      border-radius: 25px;
+      border-radius: 24px;
+
       display: grid;
       place-items: center;
-      background: linear-gradient(
-        145deg,
-        #ffffff 0%,
-        #f8fafb 58%,
-        #c8d2d9 100%
-      );
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.98),
+          rgba(224, 238, 246, 0.88)
+        );
+
+      border: 1px solid rgba(255, 255, 255, 0.98);
+
       box-shadow:
-        inset 0 3px 3px #ffffff,
-        inset 0 -7px 12px rgba(31, 51, 64, 0.16),
-        0 10px 14px rgba(0, 0, 0, 0.28);
+        inset 0 2px 3px rgba(255, 255, 255, 1),
+        inset 0 -5px 10px rgba(31, 68, 90, 0.12),
+        0 7px 14px rgba(13, 54, 79, 0.2);
     }
 
     .home-icon svg {
@@ -326,15 +333,15 @@
     }
 
     .issue-home-button .home-icon {
-      color: #eb7400;
+      color: #ef7b13;
     }
 
     .close-home-button .home-icon {
-      color: #2b9c39;
+      color: #2f9c4b;
     }
 
     .status-home-button .home-icon {
-      color: #136cc0;
+      color: #1672bd;
     }
 
     .button-copy {
@@ -343,34 +350,52 @@
 
     .button-copy strong {
       display: block;
+      color: #123e5e;
       font-size: clamp(21px, 3.1svh, 31px);
       line-height: 1.05;
       white-space: nowrap;
-      text-shadow:
-        0 2px 3px rgba(0, 0, 0, 0.23);
+      text-shadow: none;
     }
 
     .button-copy small {
       display: block;
-      margin-top: 8px;
+      margin-top: 7px;
+      color: #4d6d83;
       font-size: clamp(13px, 1.9svh, 18px);
       line-height: 1.22;
-      text-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.2);
+      text-shadow: none;
     }
 
     .home-arrow {
       justify-self: end;
-      color: #ffffff;
+      color: #1c668f;
       font: 300 clamp(42px, 6svh, 59px) / 1 Arial;
-      text-shadow:
-        0 2px 3px rgba(0, 0, 0, 0.2);
+      text-shadow: none;
     }
 
     .heritage-footer {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       min-height: 0;
+      overflow: hidden;
+      background:
+        url("assets/diriyah-heritage-footer.jpg")
+        center 68% / cover
+        no-repeat;
+    }
+
+    .heritage-footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(238, 249, 255, 1) 0%,
+          rgba(238, 249, 255, 0.34) 22%,
+          rgba(238, 249, 255, 0) 48%
+        );
+      pointer-events: none;
     }
 
     /* =====================================================
@@ -771,24 +796,28 @@
     @media (max-width: 540px) {
       #homeScreen {
         grid-template-rows:
-          34% 47% 19%;
+          32% 49% 19%;
       }
 
       .home-header {
-        padding-left: 9px;
-        padding-right: 9px;
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      .logo-crop {
+        width: min(67vw, 280px);
+        height: min(12svh, 100px);
       }
 
       .project-logo {
-        width: min(29svh, 225px);
-        max-height: 13svh;
+        width: 175%;
       }
 
       .home-header h1 {
         font-size:
           clamp(
             34px,
-            5.8svh,
+            5.7svh,
             49px
           );
       }
@@ -797,7 +826,7 @@
         font-size:
           clamp(
             13px,
-            2.25svh,
+            2.15svh,
             18px
           );
       }
@@ -810,15 +839,15 @@
         font-size:
           clamp(
             9px,
-            1.45svh,
+            1.4svh,
             12px
           );
       }
 
       .home-actions {
         padding:
-          3px 7%;
-        gap: 1.25svh;
+          3px 6%;
+        gap: 1.2svh;
       }
 
       .home-button {
@@ -826,7 +855,7 @@
           min(9svh, 72px)
           1fr
           20px;
-        gap: 14px;
+        gap: 13px;
         padding:
           7px
           14px
@@ -844,7 +873,7 @@
         font-size:
           clamp(
             18px,
-            2.55svh,
+            2.5svh,
             23px
           );
       }
@@ -854,7 +883,7 @@
         font-size:
           clamp(
             11px,
-            1.55svh,
+            1.5svh,
             14px
           );
       }
@@ -867,40 +896,33 @@
             46px
           );
       }
+
+      .heritage-footer {
+        background-position: center 70%;
+      }
     }
 
     @media (max-height: 700px) {
       #homeScreen {
         grid-template-rows:
-          31% 50% 19%;
+          30% 51% 19%;
       }
 
-      .project-logo {
-        max-height: 11.5svh;
+      .logo-crop {
+        height: 10svh;
       }
 
       .home-header h1 {
         font-size:
           clamp(
             29px,
-            5svh,
+            4.8svh,
             41px
           );
       }
 
       .project-name {
         margin: 4px 0 5px;
-      }
-    }
-
-    @media (min-width: 900px) {
-      .app {
-        width: min(100%, 820px);
-      }
-
-      .home-actions {
-        padding-left: 8%;
-        padding-right: 8%;
       }
     }
   </style>
@@ -910,9 +932,7 @@
 
   <main class="app">
 
-    <!-- =====================================================
-         HOME SCREEN
-    ====================================================== -->
+    <!-- HOME SCREEN -->
 
     <section
       id="homeScreen"
@@ -921,11 +941,13 @@
 
       <header class="home-header">
 
-        <img
-          class="project-logo"
-          src="assets/diriyah-gold-logo.png"
-          alt="BEC Arabia Contracting Logo"
-        >
+        <div class="logo-crop">
+          <img
+            class="project-logo"
+            src="assets/diriyah-gold-logo.png"
+            alt="BEC Arabia Contracting Logo"
+          >
+        </div>
 
         <h1>DIRIYAH</h1>
 
@@ -1094,9 +1116,7 @@
 
     </section>
 
-    <!-- =====================================================
-         ISSUE OBSERVATION
-    ====================================================== -->
+    <!-- ISSUE OBSERVATION -->
 
     <section
       id="issueScreen"
@@ -1297,9 +1317,7 @@
 
     </section>
 
-    <!-- =====================================================
-         SUCCESS SCREEN
-    ====================================================== -->
+    <!-- SUCCESS SCREEN -->
 
     <section
       id="successScreen"
@@ -1340,9 +1358,7 @@
 
     </section>
 
-    <!-- =====================================================
-         CLOSE OBSERVATION LIST
-    ====================================================== -->
+    <!-- CLOSE LIST -->
 
     <section
       id="closeListScreen"
@@ -1378,9 +1394,7 @@
 
     </section>
 
-    <!-- =====================================================
-         CLOSE OBSERVATION DETAILS
-    ====================================================== -->
+    <!-- CLOSE DETAILS -->
 
     <section
       id="closeDetailScreen"
@@ -1465,9 +1479,7 @@
 
     </section>
 
-    <!-- =====================================================
-         STATUS PASSWORD
-    ====================================================== -->
+    <!-- STATUS LOGIN -->
 
     <section
       id="statusLoginScreen"
@@ -1524,9 +1536,7 @@
 
     </section>
 
-    <!-- =====================================================
-         STATUS TABLE
-    ====================================================== -->
+    <!-- STATUS TABLE -->
 
     <section
       id="statusScreen"
@@ -1628,20 +1638,12 @@
 
     </section>
 
-    <!-- =====================================================
-         TOAST
-    ====================================================== -->
-
     <div
       id="toast"
       class="toast"
       role="status"
       aria-live="polite"
     ></div>
-
-    <!-- =====================================================
-         LOADING
-    ====================================================== -->
 
     <div
       id="loadingOverlay"

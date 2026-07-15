@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d8aa54"/>
+      <stop offset="100%" stop-color="#8f6429"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#g)" opacity="0.98">
+    <path d="M0 220V150h70v-28h38v28h72v-66h38v-25h28v25h36v136z"/>
+    <path d="M250 220V126h52v-38h35v38h54v-22h34v22h52v94z"/>
+    <path d="M450 220V104h52v-34h32v34h40v-18h32v18h58v116z"/>
+    <path d="M640 220V142h48v-52h32v52h52v-26h34v26h50v78z"/>
+    <path d="M820 220V112h54v-38h34v38h42v-20h30v20h62v108z"/>
+    <path d="M1020 220V138h52v-48h34v48h46v-24h30v24h18v82z"/>
+  </g>
+  <g fill="#5f421f" opacity="0.85">
+    <rect x="83" y="176" width="24" height="44" rx="2"/>
+    <rect x="195" y="135" width="20" height="34" rx="2"/>
+    <rect x="313" y="161" width="22" height="59" rx="2"/>
+    <rect x="492" y="142" width="23" height="78" rx="2"/>
+    <rect x="692" y="174" width="22" height="46" rx="2"/>
+    <rect x="864" y="150" width="24" height="70" rx="2"/>
+    <rect x="1080" y="165" width="22" height="55" rx="2"/>
+  </g>
+  <path d="M0 220H1200V260H0Z" fill="#6b4922"/>
+</svg>

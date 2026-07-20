@@ -31,6 +31,23 @@ const MAX_STORED_DIMENSION = 1600;
 const STORED_JPEG_QUALITY = 78;
 
 /* =====================================================
+   EXCEL IMAGE DISPLAY SETTINGS
+
+   IMAGE_CELL_FIT:
+     "contain" -> whole photo kept (nothing cropped, recommended for HSE)
+     "cover"   -> image fills the cell edge-to-edge but crops the overflow
+
+   The cell is intentionally near-square. Phone photos are portrait, so a
+   wide landscape cell used to leave large side margins and shrink each
+   photo into a thin vertical strip. A near-square cell removes that.
+===================================================== */
+
+const IMAGE_CELL_FIT = "contain";
+const IMAGE_CELL_WIDTH_PX = 250;
+const IMAGE_CELL_HEIGHT_PX = 210;
+const IMAGE_CANVAS_SCALE = 4;
+
+/* =====================================================
    REQUIRED ENVIRONMENT VARIABLES
 ===================================================== */
 
@@ -1414,14 +1431,20 @@ async function createImageCollage(
   }
 
   /*
-   * Each Excel image cell receives one fixed-size collage.
-   * This prevents Excel and mobile preview applications from
-   * independently shrinking multiple pictures into vertical strips.
+   * The collage is rendered at IMAGE_CANVAS_SCALE times the displayed
+   * size for crispness, on a near-square canvas. A near-square shape is
+   * what stops portrait phone photos from collapsing into thin strips.
    */
 
-  const canvasWidth = 920;
-  const canvasHeight = 680;
-  const outerPadding = 14;
+  const canvasWidth =
+    IMAGE_CELL_WIDTH_PX *
+    IMAGE_CANVAS_SCALE;
+
+  const canvasHeight =
+    IMAGE_CELL_HEIGHT_PX *
+    IMAGE_CANVAS_SCALE;
+
+  const outerPadding = 12;
   const gap = 12;
 
   const usableWidth =
@@ -1468,8 +1491,9 @@ async function createImageCollage(
     };
 
     /*
-     * contain keeps the complete phone photograph visible.
-     * rotate reads the phone orientation metadata automatically.
+     * rotate() reads phone orientation metadata automatically.
+     * IMAGE_CELL_FIT controls whether the whole photo is kept
+     * ("contain") or the tile is filled with a centre crop ("cover").
      */
 
     const fittedImage =
@@ -1485,16 +1509,17 @@ async function createImageCollage(
           width:
             Math.max(
               1,
-              tile.width - 8
+              tile.width
             ),
 
           height:
             Math.max(
               1,
-              tile.height - 8
+              tile.height
             ),
 
-          fit: "contain",
+          fit:
+            IMAGE_CELL_FIT,
 
           position:
             "centre",
@@ -1512,43 +1537,6 @@ async function createImageCollage(
         })
 
         .jpeg({
-          quality: 84,
-          mozjpeg: true
-        })
-
-        .toBuffer();
-
-    /*
-     * Thin frame around each image.
-     */
-
-    const framedTile =
-      await sharp({
-        create: {
-          width:
-            tile.width,
-
-          height:
-            tile.height,
-
-          channels: 3,
-
-          background:
-            "#c8d7e1"
-        }
-      })
-
-        .composite([
-          {
-            input:
-              fittedImage,
-
-            left: 4,
-            top: 4
-          }
-        ])
-
-        .jpeg({
           quality: 86,
           mozjpeg: true
         })
@@ -1557,7 +1545,7 @@ async function createImageCollage(
 
     composites.push({
       input:
-        framedTile,
+        fittedImage,
 
       left:
         tile.left,
@@ -1578,7 +1566,7 @@ async function createImageCollage(
       channels: 3,
 
       background:
-        "#eef3f7"
+        "#dce6ee"
     }
   })
 
@@ -1587,7 +1575,7 @@ async function createImageCollage(
     )
 
     .jpeg({
-      quality: 86,
+      quality: 88,
       mozjpeg: true
     })
 
@@ -1692,12 +1680,9 @@ function addImageBufferToCell(
     });
 
   /*
-   * Excel image correction:
-   *
-   * Exact pixel dimensions are used instead of a bottom-right
-   * cell anchor. Desktop Excel, mobile Excel and preview apps
-   * can recalculate bottom-right anchors differently, which
-   * previously caused images to become narrow vertical strips.
+   * Fixed pixel sizing (ext) keeps every image at exactly
+   * IMAGE_CELL_WIDTH_PX x IMAGE_CELL_HEIGHT_PX in Excel, on desktop,
+   * mobile and preview apps alike.
    */
 
   worksheet.addImage(
@@ -1706,17 +1691,20 @@ function addImageBufferToCell(
       tl: {
         col:
           columnIndex +
-          0.06,
+          0.04,
 
         row:
           rowNumber -
           1 +
-          0.06
+          0.04
       },
 
       ext: {
-        width: 238,
-        height: 180
+        width:
+          IMAGE_CELL_WIDTH_PX,
+
+        height:
+          IMAGE_CELL_HEIGHT_PX
       },
 
       editAs:
@@ -1893,7 +1881,7 @@ async function createProfessionalExcel(
 
     {
       key: "issueImages",
-      width: 36
+      width: 38
     },
 
     {
@@ -1908,7 +1896,7 @@ async function createProfessionalExcel(
 
     {
       key: "closeoutImages",
-      width: 36
+      width: 38
     },
 
     {
@@ -2240,7 +2228,7 @@ async function createProfessionalExcel(
       )
     ];
 
-    row.height = 150;
+    row.height = 165;
 
     const alternatingFill =
       index % 2 === 0

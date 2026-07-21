@@ -13,6 +13,10 @@ services:
           property: connectionString
       - key: STATUS_PASSWORD
         value: "1353"
+      - key: MSO_STATUS_PASSWORD
+        value: "1353"
+      - key: ONE_HOTEL_STATUS_PASSWORD
+        value: "9528"
       - key: GEMINI_MODEL
         value: gemini-3.1-flash-lite
       - key: GEMINI_API_KEY
